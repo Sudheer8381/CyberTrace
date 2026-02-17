@@ -1,0 +1,68 @@
+<html th:replace="~{Investigator/investigatorbase::layout(~{::main})}">
+
+<body>
+	<main>
+		<div class="container">
+			<div class="row">
+				<div class="card" style="background: radial-gradient(rgb(226, 216, 207));">
+					<div class="row">
+						<div class="col-sm-6 pt-3">
+							<h4 class="">Welcome, <span class="" th:text="${session.loggedInUser.name}"></span></h4>
+							<small class="fw-bold text-secondary ps-2">Justice begins with your investigation</small>
+						</div>
+						<div class="col-sm-6 text-start text-sm-end pt-3">
+							<img width="60px" class="rounded-circle" alt="User Name"
+								th:src="@{${session.loggedInUser.profilePic != null ? '/Profiles/' + session.loggedInUser.profilePic : '../static/assets/user/avatar-2.jpg'}}">
+							<p class="content" th:text="${session.loggedInUser.email}"></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="card text-center shadow">
+								<div class="card-header bg-cyan-500 p-3">
+									<h5 class="m-0"> <i class="ti ti-users text-danger fs-5 px-2"></i>Total
+										Assigned Complaints</h5>
+								</div>
+								<div class="card-body">
+									<h4 class="m-0 pt-1" th:text="${processingComplaints}">50+</h4>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-sm-4">
+							<div class="card text-center shadow">
+								<div class="card-header bg-cyan-500 p-3">
+									<h5 class="m-0"> <i class="ti ti-users text-danger fs-5 px-2"></i>Total
+										Resolved Complaints</h5>
+								</div>
+								<div class="card-body">
+									<h4 class="m-0 pt-1" th:text="${solvedComplaints}">50+</h4>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="card text-center shadow">
+								<div class="card-header bg-cyan-500 p-3">
+									<h5 class="m-0"> <i class="ti ti-users text-danger fs-5 px-2"></i>Total
+										Rejected Complaints</h5>
+								</div>
+								<div class="card-body">
+									<h4 class="m-0 pt-1" th:text="${terminatedComplaints}">50+</h4>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</main>
+</body>
+
+</html>

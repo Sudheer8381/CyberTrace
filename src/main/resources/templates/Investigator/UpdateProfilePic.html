@@ -1,0 +1,36 @@
+<html th:replace="~{Investigator/investigatorbase::layout(~{::main})}">
+
+<body>
+	<main>
+		<div class="container mt-5">
+			<h4>Update Profile Picture</h4>
+			<hr>
+
+			<!-- Success / Error Message -->
+			<div th:if="${msg}" class="alert alert-success" th:text="${msg}"></div>
+
+			<!-- Current Profile Picture -->
+			<div class="mb-4">
+				<h6>Current Profile Picture:</h6>
+				<!--<img th:src="${session.loggedInAdmin.profilePic != null ? '/ProfilePic/' + session.loggedInAdmin.profilePic : '../assets/images/user/avatar-2.jpg'}"
+                 alt="Profile Picture" class="rounded-circle" style="width:120px;height:120px;">-->
+				<img th:src="${session.loggedInUser.profilePic != null 
+				 ? '/Profiles/' + session.loggedInUser.profilePic 
+				 : '/assets/images/user/avatar-2.jpg'}" class="rounded-circle" style="width:120px;height:120px;">
+
+			</div>
+
+			<!-- Form to Upload New Picture -->
+			<form th:action="@{/Investigator/UpdateProfilePic}" method="post" enctype="multipart/form-data">
+				<div class="mb-3">
+					<label for="profilePic" class="form-label">Select New Profile Picture</label>
+					<input type="file" class="form-control" id="profilePic" name="profilePic" required>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Update Profile Picture</button>
+			</form>
+		</div>
+	</main>
+</body>
+
+</html>

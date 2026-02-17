@@ -1,0 +1,79 @@
+<html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+<main class="py-5">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-9 col-md-8">
+
+				<div class="card shadow ">
+					<div class="card-header text-center" style="background-color: #112B4C !important;">
+						<h3 class="mb-0 text-white fst-italic">Add Notification</h3>
+					</div>
+
+					<form method="post">
+						<div class="card-body">
+							<div class="mb-3">
+								<label for="notification" class="form-label fw-semibold">Enter Notification</label>
+								<textarea id="notification" name="message" class="form-control" rows="3"
+									placeholder="Enter Here..." required></textarea>
+							</div>
+
+							<div class="text-end">
+								<button type="submit" class="btn btn-primary btn-md px-4">Publish</button>
+							</div>
+						</div>
+					</form>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row mx-auto">
+			<div class="col-sm-12 my-4 text-center" style="background-color: #112B4C !important;">
+				<h4 class=" py-3 pt-4 px-0 text-white fst-italic">Published Notification</h4>
+			</div>
+			<div class="col-sm-12 table-responsive">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+						<tr class="bg-black text-center">
+							<th class="text-white">SR No.</th>
+							<th class="text-white">Message</th>
+							<th class="text-white">Status</th>
+							<th class="text-white">Date</th>
+							<th class="text-white">Action</th>
+						</tr>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="notif, srno : ${notifications}">
+							<td th:text="${srno.index+1}"></td>
+							<td th:text="${notif.message}"></td>
+							<td>
+								<span class="badge" th:classappend="${notif.status.name=='RUNNING' ? 'bg-success' : 'bg-danger'}" th:text="${notif.status}"></span>
+							</td>
+							<td>
+								<span th:text="${#temporals.format(notif.publishAt, 'dd-MM-yyyy')}"></span>
+							</td>
+							<td class="text-center">
+								<a th:if="${notif.status.name()== 'RUNNING'}" onclick="return confirm('Are you sure want to end !')" th:href="@{'EndNotification/'+ ${notif.id}}" class="btn btn-danger btn-sm">End</a>
+
+								<a class="btn btn-danger btn-sm" th:href="@{'DeleteNotification/'+ ${notif.id}}" onclick="return confirm('Are youu sure want to Delete Notification ?')">Delete</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var msg = "[[${msg}]]";
+		if (msg != "") {
+			alert(msg);
+		}
+	</script>
+</main>
+
+</html>

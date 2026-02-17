@@ -1,0 +1,81 @@
+<html th:replace="~{base::Layout(~{::main})}">
+
+<body>
+
+	<main class="container-fluid">
+
+		<!-- FORM CARD -->
+		<div class="row pb-5" style="padding-top: 150px;">
+			<div class="col-12 col-md-10 col-lg-8 mx-auto">
+				<div class="card text-center">
+					<div class="card-header text-white" style="background-color: #112B4C !important;">
+						<h3 class="fst-italic">Track Your Complaint</h3>
+					</div>
+					<div class="card-body">
+						<form th:action="@{/TrackComplaint}" method="post" class="row g-3 justify-content-center">
+							<div class="col-12 col-sm-8 col-md-6">
+								<label class="form-label">Enter Your Id :</label>
+								<input type="text" name="cid" class="form-control" placeholder="Enter Here..." required>
+							</div>
+							<div class="col-12">
+								<button class="btn btn-warning px-4" type="submit">
+									Track Complaint
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- RESULT TABLE -->
+		<div class="row mt-4" th:if="${complaint != null}">
+			<div class="col-12 col-md-11 mx-auto">
+				<div class="table-responsive">
+					<table class="table table-bordered table-striped text-center align-middle">
+						<thead class="table-dark">
+							<tr>
+								<th>Complaint Id</th>
+								<th>Investigator</th>
+								<th>Investigator Contact</th>
+								<th>Complaint Title</th>
+								<th>Registration Timing</th>
+								<th>Resolved Timing</th>
+								<th>Status</th>
+								<th>Message</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${complaint.complaintId}"></td>
+								<td th:text="${complaint.assignedTo != null ? complaint.assignedTo.name : 'NA'}"></td>
+								<td th:text="${complaint.assignedTo != null ? complaint.assignedTo.contactNo : 'NA'}"></td>
+								<td th:text="${complaint.title}"></td>
+								<td th:text="${#temporals.format(complaint.regDateTime, 'dd-MM-yyyy HH:mm')}"></td>
+								<td th:text="${#temporals.format(complaint.solvedAt != null ? complaint.solvedAt : 'NA', 'dd-MM-yyyy HH:mm')}"></td>
+								<td class="text-primary" th:text="${complaint.status}"></td>
+								<td>
+									<div class="overflow-auto text-truncate" style="max-height: 100px; max-width: 200px;">
+										<p th:text="${complaint.message}"></p>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<script type="text/javascript">
+			var msg = "[[${msg}]]"
+			if(msg!=""){
+				alert(msg);
+			}
+		</script>
+			
+	</main>
+</body>
+
+</html>

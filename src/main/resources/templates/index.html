@@ -1,0 +1,509 @@
+<html th:replace="~{base::Layout(~{::main})}">
+
+<body>
+	<main>
+		<!-- CSS -->
+		<style>
+			
+			<!--for scroll via anchor tag-->
+					html {
+						scroll-behavior:smooth;
+					} 
+			.video-section {
+				height: 100vh;
+				width: 100%;
+				overflow: hidden;
+			}
+
+			.bg-video {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				min-width: 100%;
+				min-height: 100%;
+				width: auto;
+				height: auto;
+				transform: translate(-50%, -50%);
+				z-index: -1;
+				object-fit: cover;
+			}
+
+			.overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.45);
+				/* dark overlay layer */
+				z-index: 0;
+			}
+
+			.content {
+				position: relative;
+				z-index: 1;
+				height: 100%;
+			}
+
+			/* marquee */
+
+			.ticker-wrapper {
+				display: flex;
+				gap: 50px;
+				color: white;
+				margin-top: 130px;
+			}
+
+			.ticker-block {
+				display: flex;
+				align-items: center;
+				white-space: nowrap;
+				gap: 20px;
+			}
+
+			.notif-item {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+
+			/* Card css*/
+
+			/* About us css*/
+
+			.simple-card {
+				width: 18rem;
+				border: none;
+				border-radius: 14px;
+				background: #ffffff;
+				box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+			.simple-card:hover {
+				transform: translateY(-8px);
+				box-shadow: 0 16px 35px rgba(0, 0, 0, 0.15);
+			}
+
+			.card-header {
+				border-bottom: none;
+			}
+
+			.card-body {
+				padding: 1.5rem;
+			}
+
+			.card-title {
+				letter-spacing: 0.05em;
+				margin-bottom: 0.6rem;
+			}
+
+			.card-text {
+				font-size: 0.9rem;
+				color: #444;
+				line-height: 1.6;
+			}
+		</style>
+
+		<!-- Fullscreen Video Section -->
+		<section class="video-section position-relative">
+			<!-- Background Video -->
+			<video autoplay muted loop playsinline class="bg-video">
+				<source src="/video/hero-video.mp4" type="video/mp4">
+
+			</video>
+
+			<!-- Overlay -->
+			<div class="overlay"></div>
+
+			<!-- Content -->
+			<div
+				class="content pt-5 text-center text-white d-flex flex-column justify-content-center align-items-center">
+				<h1 class="display-4 fw-bold" style="margin-top: 10% ;" data-aos="fade-up">Cyber Investigator</h1>
+				<p class="lead pt-3" data-aos="fade-up" data-aos-duration="800">Fully Licensed, Accredited & Insured Private Cyber investigators. Experts in
+					Cybercrime
+					Investigation</p>
+				<a href="/AboutUs" class="btn btn-warning  btn-md mt-3" data-aos="fade-up"data-aos-duration="1000">Read More...</a>
+
+				<marquee class="pt-4" onmouseover="this.stop()" onmouseout="this.start()" scrollamount="10"
+					direction="left" behavior="scroll">
+					<div class="ticker-wrapper">
+						<!-- Each block contains 2 notifications in ONE LINE -->
+						<div class="ticker-block" th:each="notif, stat : ${notifications}"
+							th:if="${stat.index % 2 == 0}">
+
+							<!-- Notification 1 -->
+							<span class="notif-item">
+								<img src="images/without-background.gif" style="width: 50px;">
+								<span th:text="${notifications[stat.index].message}"></span>
+								[
+								<span class="text-warning" th:text="${notifications[stat.index].publishAt != null
+				                          ? #temporals.format(notifications[stat.index].publishAt,'dd-MM-yyyy, hh:mm a')
+				                          : 'N/A'}">
+								</span>
+								]
+							</span>
+
+							<!-- Notification 2 (if exists) -->
+							<span class="notif-item" th:if="${stat.index + 1 < notifications.size()}">
+
+								<img src="images/without-background.gif" style="width: 50px;">
+								<span th:text="${notifications[stat.index + 1].message}"></span>
+								[
+								<span class="text-warning" th:text="${notifications[stat.index + 1].publishAt != null
+				                          ? #temporals.format(notifications[stat.index + 1].publishAt,'dd-MM-yyyy, hh:mm a')
+				                          : 'N/A'}">
+								</span>
+								]
+							</span>
+
+						</div>
+
+					</div>
+				</marquee>
+
+			</div>
+		</section>
+
+		<div class="container-fluid" id="ourServices">
+			<div class="col-sm-12 text-center py-4 my-5">
+				<a href="/ReportScam" class="btn btn-lg bg-warning ">REPORT YOUR CASE</a>
+			</div>
+			<div class="col-sm-12 text-center" style="background-color: aliceblue;">
+				<hr style="padding-top: 10px;">
+				<h1 class="fw-bold" style="font-size: 50px;" data-aos="fade-up" data-aos-duration="500">
+					Our Services
+				</h1>
+				<p class="fs-5 fw-600 pt-5 p-4 pb-5" data-aos="fade-up" data-aos-duration="500">
+					Expert cyber investigations provide peace of mind and actionable intelligence and evidence.
+					Cybertrace is licensed and insured for private investigations and has been in operation since 2015
+				</p>
+			</div>
+			<hr style="margin-top: px;">
+
+			<!-- card start-->
+
+			<div class="container-fluid section-neutral py-5" style="background-color:#f8fafc;">
+				<div class="row g-3 justify-content-center">
+
+					<div class="col-sm-6 col-md-4">
+						<div class="pro-card-minimal ">
+							<div class="pro-card-body text-center">
+								<h5 class="pro-title py-2">Cyber Fraud Investigation</h5>
+								<p class="pro-subtitle">Identify Who Scammed You</p>
+								<p class="pro-desc">
+									Are you the victim of an online scam or cyber fraud operation? Romance scams,
+									investment fraud or phishing attacks: We understand the methods used by global scam
+									syndicates and can identify the individuals involved. We work closely with
+									international law enforcement to bring those responsible to justice.
+								</p>
+								<a href="#" class="pro-link">Learn more →</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="pro-card-minimal">
+							<div class="pro-card-body text-center">
+								<h5 class="pro-title py-2">Cryptocurrency Tracing</h5>
+								<p class="pro-subtitle">Trace Your Stolen Cryptocurrency</p>
+								<p class="pro-desc">
+									Using our AI tools, we help victims of cryptocurrency and trading platform scams
+									through investigation, disruption and recovery operations. Whether it’s Bitcoin,
+									USDT, Litecoin, Ether or other cryptocurrencies, we can help you recover your
+									investment by tracing the transactions through the blockchain to identify the
+									destination wallet.
+
+
+								</p>
+								<a href="#" class="pro-link">Learn more →</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="pro-card-minimal">
+							<div class="pro-card-body text-center">
+								<h5 class="pro-title py-2">Cyber Bullying & Online Grooming Investigations</h5>
+								<p class="pro-subtitle">We Help You Keep Your Family Safe</p>
+								<p class="pro-desc">
+									Are you the victim of anonymous cyberbullying? Has a sexual predator tricked your
+									child into sending explicit photos? Turn the tables on bullies, groomers and
+									predators with Cybertrace’s cyberbullying and online grooming investigations. We are
+									experts in tracing, locating and identifying offenders.
+								</p>
+								<a href="#" class="pro-link">Learn more →</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="pro-card-minimal">
+							<div class="pro-card-body text-center">
+								<h5 class="pro-title py-2">Social Media Investigation</h5>
+								<p class="pro-subtitle">With supporting text below as a natural lead-in to additional
+									content.</p>
+								<p class="pro-desc">
+									Are you the victim of an online scam or cyber fraud operation? Romance scams,
+									investment fraud or phishing attacks: We understand the methods used by global scam
+									syndicates and can identify the individuals involved. We work closely with
+									international law enforcement to bring those responsible to justice.
+								</p>
+								<a href="#" class="pro-link">Learn more →</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="pro-card-minimal">
+							<div class="pro-card-body text-center">
+								<h5 class="pro-title py-2">Website Cyber Forensics</h5>
+								<p class="pro-subtitle">With supporting text below as a natural lead-in to additional
+									content.</p>
+								<p class="pro-desc">
+									Are you the victim of an online scam or cyber fraud operation? Romance scams,
+									investment fraud or phishing attacks: We understand the methods used by global scam
+									syndicates and can identify the individuals involved. We work closely with
+									international law enforcement to bring those responsible to justice.
+								</p>
+								<a href="#" class="pro-link">Learn more →</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="pro-card-minimal">
+							<div class="pro-card-body text-center">
+								<h5 class="pro-title py-2">Background Checks</h5>
+								<p class="pro-subtitle">With supporting text below as a natural lead-in to additional
+									content.</p>
+								<p class="pro-desc">
+									Are you the victim of an online scam or cyber fraud operation? Romance scams,
+									investment fraud or phishing attacks: We understand the methods used by global scam
+									syndicates and can identify the individuals involved. We work closely with
+									international law enforcement to bring those responsible to justice.
+
+
+								</p>
+								<a href="#" class="pro-link">Learn more →</a>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- Repeat same card structure -->
+
+				</div>
+			</div>
+
+			<div class="row bg-black px-2" style="padding-top: 10%;">
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-md-5 py-4">
+							<div class="pt-5" data-aos="fade-right">
+								<img src="../assets/images/whoarewe.png" class="img-fluid border border-1 rounded-2"
+									alt="image"></img>
+							</div>
+						</div>
+						<div class="col-md-7 py-5 border border-1 rounded-2">
+							<h4 class="text-uppercase text-center fs-1 text-white" data-aos="fade-up" data-aos-duration="500"><span class="text-warning">WHO</span>
+								ARE WE?
+							</h4>
+							<h4 class="text-center text-white" data-aos="fade-up"data-aos-duration="500">Cyber Fraud Investigators</h4>
+
+							<p class="text-white px-1 pt-4" data-aos="fade-up" data-aos-duration="600">
+								Cyber Fraud Investigators. Cybertrace’s story began in 2015, however, the seeds for
+								Cybertrace
+								were planted back in 2000. We are highly focused on client privacy with special
+								consideration
+								given to issues surrounding cyber fraud (scam); including, investment scams, romance
+								scams and
+								identity theft. As such, our primary focus is strict confidentiality, stringent IT
+								security,
+								flawless integrity.
+							</p>
+							<p class="text-white px-1" data-aos="fade-up"data-aos-duration="700">
+								Cybertrace are a team of licensed Private Investigators specialising in Cyber Fraud
+								Investigation, Cryptocurrency Tracing and Assets Recovery services. We provide services
+								to
+								private and commercial clientele globally and have our head office in Sydney. All
+								products are
+								tailor-made, highly confidential and comprehensive. We guarantee the highest level
+								product and
+								service.
+							</p>
+							<p class="text-white px-1" data-aos="fade-up"data-aos-duration="800">
+								We have extensive experience with investigations relating to, cyber-fraud (including
+								financial,
+								romance & online dating scams), website forensics, due diligence background checks,
+								cyber-bullying and harassment, and location based skip trace investigations. We use
+								advanced
+								techniques to gain results that others cannot.
+							</p>
+							<p class="text-white px-1" data-aos="fade-up"data-aos-duration="900">
+								For more information on our investigation services; including cyber-fraud, Asset
+								Recovery
+								Services, due diligence and &amp background checks, please contact us for a confidential
+								review
+								of your requirements.
+							</p>
+							<div class="text-center pt-3">
+								<a href="#" class="bg-warning btn btn-md border border-0 rounded-5 px-4 p-2">Learn more
+									About
+									Us</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 pt-5 ">
+					<h4 class="fs-1 text-white text-center pt-5 text-uppercase" data-aos="fade-up"><span class="text-warning">Why
+							Choose</span> Cybertrace</h4>
+					<h5 class="fs-4 text-center pt-4 text-white pb-3" data-aos="fade-up">OUR EXPERIENCE</h5>
+					<div class="row pt-5">
+						<div class="col-md-6 my-1">
+							<div class="card h-100 overflow-hidden">
+								<div class="card-body bg-black">
+									<p class="text-white pt-2 px-1" data-aos="fade-up">
+										<i class="fa-solid fa-check" style="color: #FFD43B;"></i>
+										Cybertrace International Pty Ltd is an Australian owned intelligence-focused
+										(OSINT)
+										private investigation company. We also own and operate Cybertrace B.V which is
+										our Dutch
+										subsidiary. We are innovative Private Investigators and pioneers in the
+										development of
+										custom technology-based private investigation tools to increase our product
+										capability
+									</p>
+									<p class="text-white px-1" data-aos="fade-up">
+										Our Founder and CEO Dan Halpin is a world renowed Private Investigator and
+										undisputed
+										leader in the field of private intelligence and private investigation.
+									</p>
+									<p class="text-white px-1" data-aos="fade-up">
+										Cybertrace was structured with the same level professionalism, integrity and
+										quality
+										that client expect from government and top-tier corporations; whilst maintaining
+										its
+										boutique feel.
+									</p>
+									<p class="text-white px-1" data-aos="fade-up">
+										Cybertrace work closely with clients to determine the most efficient method of
+										investigation based on current intelligence. This in turn saves you money
+										through
+										correct targeting and investigation planning.
+									</p>
+									<p class="text-white px-1" data-aos="fade-up">
+										Cybertrace understands your needs and guarantee the highest level of
+										confidentiality and
+										compliance with privacy legislation include the European and United Kingdom
+										GDPR.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 my-1">
+							<div class="card h-100 overflow-hidden">
+								<div class="card-body bg-black align-items-start">
+									<p class="text-white pt-2 px-1" data-aos="fade-up">
+										Cybertrace Private Investigation Services offer superior online (OSINT)
+										investigation
+										capabilities both in Australia and around the world. We are regularly engaged
+										for
+										internationally for multi-national cyber-fraud investigations.
+									</p>
+									<p class="text-white px-1" data-aos="fade-up">
+										Cybertrace Private Investigators are highly trained in online investigation
+										related
+										techniques including; open source intelligence (OSINT), cryptocurrency tracing,
+										website
+										forensic investigation, data analysis and Social Media Investigation.
+									</p>
+									<p class="text-white px-1" data-aos="fade-up">
+										Cybertrace takes client confidentiality to the next level. We store all client
+										records
+										on our encrypted cloud servers to protect personal information from hacking and
+										identity
+										theft.
+									</p>
+									<p class="text-white px-1" data-aos="fade-up">
+										Our reporting is first rate and used by other firms as the industry benchmark.
+										We
+										accurately describe the intelligence and evidence we collect due to our
+										extensive
+										combined law enforcement and intelligence background.
+									</p>
+									<p class="text-white px-1" data-aos="fade-up">
+										Cybertrace has built several custom investigation tools to assist us with
+										capturing the
+										intelligence and evidence you require.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="text-center py-5" id="ourProcess">
+						<a href="#" class="bg-warning btn btn-md border-0 rounded-4 p-2 text-black px-4 btn-md"
+							style="transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.1)'"
+							onmouseout="this.style.transform='scale(1.01)'">LEARN
+							MORE ABOUT
+							CYBERTRACE</a>
+					</div>
+				</div>
+			</div>
+
+
+			<!--Our Processes-->
+			<div class="row py-5">
+				<div class="text-center">
+					<h4 class="fs-1 text-uppercase">Our Processes</h4>
+				</div>
+				<div class="row row-cols-1 mx-auto row-cols-md-4 g-3">
+					<div class="card border-0" data-aos="fade-down">
+						<div class="card-body shadow rounded-3 text-center bg-warning">
+							<h5><i class="fa-solid fa-star" style="color: #000000; font-size: 280%;"></i></h5>
+							<h5 class="card-title fs-2">Our Ethos</h5>
+							<p class="card-text mx-auto text-black">We believe that ethics and integrity are the
+								backbone of any
+								quality company. To ensure you receive the highest quality service, we only
+								recruit staff who believe in our core values.</p>
+						</div>
+					</div>
+					<div class="card border-0" data-aos="fade-up">
+						<div class="card-body shadow rounded-3 text-center bg-warning">
+							<h5><i class="fa-solid fa-server" style="color: #080808; font-size: 280%;"></i></h5>
+							<h5 class="card-title fs-2">IT Security</h5>
+							<p class="card-text mx-auto text-black">We guarantee your personal details are secure
+								through our
+								implementation of stringent business practice and governance. We ensure the
+								security of your information by storing all records offline to avoid hacking and
+								data leaks.</p>
+						</div>
+					</div>
+					<div class="card border-0" data-aos="fade-down">
+						<div class="card-body shadow rounded-3 text-center bg-warning">
+							<h5><i class="fa-regular fa-handshake" style="color: #050505; font-size: 280%;"></i>
+							</h5>
+							<h5 class="card-title">Confidentiality</h5>
+							<p class="card-text mx-auto text-black">When absolute confidentiality is a must. Many of our
+								clientele are
+								high net worth or high profile individuals who cannot risk any breach of
+								confidentiality in their personal and professional lives. We guarantee the highest
+								level of confidentiality during our provision of service, as well as after.</p>
+						</div>
+					</div>
+					<div class="card border-0" data-aos="fade-up">
+						<div class="card-body shadow rounded-3 text-center bg-warning">
+							<h5><i class="fa-solid fa-graduation-cap" style="color: #0a0a0a; font-size: 280%;"></i>
+							</h5>
+							<h5 class="card-title">Innovation</h5>
+							<p class="card-text mx-auto text-black">Our CEO and Founder, Dan Halpin has a reputation as
+								a leading
+								innovator in the Australian and international private intelligence community.
+								Cybertrace frequently uses internal custom built technology (including AI
+								technology) to gain results that no others service provider can.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+	</main>
+</body>
+
+</html>

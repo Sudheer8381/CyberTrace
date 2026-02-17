@@ -1,0 +1,106 @@
+<html th:replace="~{base::Layout(~{::main})}">
+<body>
+<main style="background-color: aliceblue;">
+    <div class="container" style="margin-top: 150px;">
+        <div class="row justify-content-center">
+            <div class="col-md-10 mb-5">
+                <div class="card shadow-lg border-0" style="border-radius: 15px;">
+                    <div class="card-header text-white text-center py-3" style="border-radius: 15px 15px 0 0; background-color: #112B4C !important;">
+                        <h3 class="mb-0 fst-italic"> Report a Scam</h3>
+                        <p class="mb-0 fst-italic">Help us track and prevent online frauds</p>
+                    </div>
+                    <div class="card-body p-4">
+                        <form action="/ReportScam" method="post" th:object="${dto}" enctype="multipart/form-data">
+                            <!-- PERSONAL DETAILS -->
+                            <h5 class="fw-bold text-secondary mb-3 fst-italic">Personal Details</h5>
+                            <div class="row">
+                            	<div class="col-md-6 mb-3">
+	                                <label class="form-label">Full Name</label>
+	                                <input type="text" th:field="*{name}" class="form-control" placeholder="Enter your name" required>
+	                            </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Contact No </label>
+                                    <input type="text" th:field="*{contactNo}" class="form-control" placeholder="Enter mobile number" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">WhatsApp No </label>
+                                    <input type="text" th:field="*{whatsappNo}" class="form-control" placeholder="WhatsApp number" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+	                                <label class="form-label">Email</label>
+	                                <input type="email" th:field="*{email}" class="form-control" placeholder="Enter your email" required>
+	                            </div>
+	                            <div class="col-md-12 mb-3">
+	                                <label class="form-label">Address </label>
+	                                <textarea th:field="*{address}" class="form-control" rows="2" placeholder="Enter your address" required></textarea>
+	                            </div>
+	                            <hr>
+		                            <!-- SCAM INFORMATION -->
+	                            <h5 class="fw-bold text-secondary mb-3 fst-italic">Scam Information</h5>
+	                            <div class="col-md-6 mb-3">
+	                                <label class="form-label">Type of Scam</label>
+	                                <select th:field="*{typeOfScam}" class="form-select" required>
+	                                    <option value="">Select Scam Type</option>
+	                                    <option value="Cyber Fraud">Cyber Fraud</option>
+	                                    <option value="Identity Theft">Identity Theft</option>
+	                                    <option value="Banking / UPI Fraud">Banking / UPI Fraud</option>
+	                                    <option value="Social Media Scam">Social Media Scam</option>
+	                                    <option value="Online Shopping Scam">Online Shopping Scam</option>
+	                                    <option value="Other">Other</option>
+	                                </select>
+	                            </div>
+	                            <div class="col-md-6 mb-3">
+	                                <label class="form-label">Platform</label>
+	                                <input type="text" th:field="*{platform}" class="form-control" placeholder="Example: Instagram, WhatsApp, OLX" required>
+	                            </div>
+								<div class="col-md-6 mb-3">
+	                                <label class="form-label">Amount Lost</label>
+	                                <input type="number" th:field="*{lostAmount}" class="form-control" placeholder="Enter amount" required>
+	                            </div>
+	                            <div class="col-md-6 mb-3">
+	                                <label class="form-label">Title</label>
+	                                <input type="text" th:field="*{title}" class="form-control" placeholder="Short title of the scam" required>
+	                            </div>
+	                            <div class="col-md-8 mb-3">
+	                                <label class="form-label">Full Description</label>
+	                                <textarea th:field="*{description}" class="form-control" rows="3" placeholder="Describe what happened" required></textarea>
+	                            </div>
+	                            <div class="col-md-4 mb-3">
+	                                <label class="form-label">Scammer Details </label>
+	                                <textarea th:field="*{scammer}" class="form-control" rows="3" placeholder="Phone no, profile link, UPI ID, etc." required></textarea>
+	                            </div>		                            
+                            </div>
+                            <hr>
+                            <!-- EVIDENCE UPLOAD -->
+                            <h5 class="fw-bold text-secondary mb-3 fst-italic">Evidence (Upload Images)</h5>
+                            <div class="mb-3">
+                                <label class="form-label">Upload Evidence Images</label>
+                                <input type="file" 
+                                       name="evidenceImages" 
+                                       class="form-control" 
+                                       multiple 
+                                       accept="image/*" required>
+                                <small class="text-muted">
+                                    You can upload multiple images like screenshots, chats, receipts, etc.
+                                </small>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn text-white px-5 py-2" style="border-radius: 10px; background-color: #112B4C !important;">
+                                     Submit Report
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<script type="text/javascript">
+		var msg = "[[${msg}]]"
+			if(msg!=""){
+			alert(msg);
+			}
+		</script>
+</main>
+</body>
+</html>

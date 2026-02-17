@@ -1,0 +1,88 @@
+<html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+
+<body>
+	<main>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					<div class="card-header" style="background-color: #112B4C !important;">
+						<h4 class="text-center text-white m-0">Manage Complaints</h4>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Sr. No.</th>
+										<th>Complaint Id</th>
+										<th>Investigator</th>
+										<th>Victim Name</th>
+										<th>Contact No</th>
+										<th>Scammer</th>
+										<th>Title</th>
+										<th>Type of Scam</th>
+										<th>Status</th>
+										<th>Date</th>
+										<th>Evidence</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="com, srno : ${complaints}">
+										<td th:text="${srno.index+1}"></td>
+										<td th:text="${com.complaintId}"></td>
+										<td th:text="${com.assignedTo.name}"></td>
+										<td th:text="${com.name}"></td>
+										<td th:text="${com.contactNo}"></td>
+										<td th:text="${com.scammer}"></td>
+										<td th:text="${com.title}"></td>
+										<td th:text="${com.typeOfScam}"></td>
+										<td>
+											<span class="badge bg-warning rounded-5" th:text="${com.Status}"></span>
+										</td>
+										<td th:text="${#temporals.format(com.regDateTime, 'dd-MM-yyyy HH:mm')}"></td>
+										<td>
+											<a class="btn btn-success btn-sm" data-bs-toggle="modal" th:data-bs-target="${'#evidenceModal__'+com.id}">View...</a>
+										</td>										
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Button trigger modal -->
+			
+		<!-- Modal -->
+		<div th:each="com :${complaints}" class="modal fade" th:id="${'evidenceModal__'+com.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h1 class="modal-title fs-5" id="#exampleModal">Complanint Evidences</h1>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <div class="row">
+					<div class="col-sm-4 mx-auto" th:each="images : ${com.evidence}">
+						<img class="w-100" alt="image not found" th:src="@{'/uploads/'+${images}}">
+					</div>
+				</div>
+		      </div>
+		     
+		    </div>
+		  </div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			var msg = "[[${msg}]]";
+			if (msg != "") {
+				alert(msg);
+			}
+		</script>
+	</main>
+
+</body>
+
+</html>

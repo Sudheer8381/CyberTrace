@@ -1,0 +1,49 @@
+<html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+	<body>
+		<main>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card-shadow">
+					   <div class="card-header bg-primary py-3 border-rounded">
+						<h4 class="text-center text-white m-0">Manage Enquiries</h4>
+					   </div>
+					   <div class="card-body">
+						<div class="table-responsive">
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>Sr. No.</th>
+									<th>Name</th>
+									<th>Gender</th>
+									<th>ContactNo</th>
+									<th>Email</th>
+									<th>Subject</th>
+									<th>Message</th>
+									<th>Address</th>
+									<th>Enquiry Date</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="enq, srno : ${enquiries}">
+									<td th:text="${srno.index+1}" class="text-center"></td>
+									<td th:text="${enq.name}"></td>
+									<td th:text="${enq.gender}"></td>
+									<td th:text="${enq.ContactNo}"></td>
+									<td th:text="${enq.email}"></td>
+									<td th:text="${enq.subject}"></td>
+									<td th:text="${enq.message}"></td>
+									<td th:text="${enq.address}"></td>
+									<td th:text="${#temporals.format(enq.enquiryDate, 'dd-MM-yyyy HH:mm')}"></td>
+									<td th:text="${enq.enquiryDate}"></td>
+								</tr>
+							</tbody>
+						</table>
+					   </div>
+					   </div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

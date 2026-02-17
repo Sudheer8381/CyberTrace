@@ -1,0 +1,181 @@
+<html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+
+<body>
+
+	<main>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card shadow mb-5 p-3 px-4" style="background: radial-gradient(rgb(226, 216, 207));">
+					<div class="row">
+						<div class="col-sm-6 pt-2">
+							<h4 class="m-0">Welcome, <span th:text="${session.loggedInAdmin.name}"></span></h4>
+							<p class="m-0">Here is Your analystic Admin Dashboard</p>
+						</div>
+						<div class="col-sm-6 mt-3 text-start text-sm-end">
+							<img width="50px" class="rounded-circle"
+								th:src="@{${session.loggedInAdmin.profilePic != null ? '/Profile/' + session.loggedInAdmin.profilePic : '../assets/images/user/avatar-2.jpg'}}">
+							<p th:text="${session.loggedInAdmin.email}" class="m-0"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="pro-card-animation">
+					<div class="card text-center shadow">
+						<div class="card-header bg-cyan-500 p-3">
+							<h5 class="m-0"> <i class="ti ti-users text-danger fs-5 px-2"></i>Total Investigators</h5>
+						</div>
+						<div class="card-body">
+
+							<h4 class="m-0 pt-1" th:text="${totalInvestigators}">50+</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card text-center shadow">
+					<div class="card-header bg-gray-500 p-3">
+						<h5 class="m-0"> <i class="ti ti-report text-danger fs-5 px-2"></i>Total Complaint Received
+						</h5>
+					</div>
+					<div class="card-body">
+
+						<h4 class="m-0 pt-1" th:text="${totalComplaints}">50+</h4>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card text-center shadow">
+					<div class="card-header bg-cyan-500 p-3">
+						<h5 class="m-0"> <i class="ti ti-zoom-question text-danger fs-5 px-2"></i>Total Enqueries
+						</h5>
+					</div>
+					<div class="card-body">
+
+						<h4 class="m-0 pt-1" th:text="${totalEnqueries}">50+</h4>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="col-md-3">
+				<div class="card border border-primary  text-center shadow">
+					<i class="ti ti-user p-2 mx-auto fs-3 my-2 bg-primary  rounded-circle"
+						style="width:50px; height: 50px; line-height: 30px;"></i>
+					<h4 class="py-2" th:text="${pendingComplaints}">50+</h4>
+					<div class="card-footer p-3 bg-primary">
+						<h5 class="m-0 text-white p-2">Pending Complaints</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card border border-danger  text-center shadow">
+					<i class="ti ti-credit-card-off p-2 mx-auto fs-3 my-2 bg-danger rounded-circle"
+						style="width:50px; height: 50px; line-height: 30px;"></i>
+					<h4 class="py-2" th:text="${rejectedComplaints}">50+</h4>
+					<div class="card-footer p-3 bg-danger">
+						<h5 class="m-0 text-white p-2">Rejected Complaints</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card border border-warning  text-center shadow">
+					<i class="ti ti-aperture p-2 mx-auto fs-3 my-2 bg-warning rounded-circle"
+						style="width:50px; height: 50px; line-height: 30px;"></i>
+					<h4 class="py-2" th:text="${processingComplaints}">50+</h4>
+					<div class="card-footer p-3 bg-warning">
+						<h5 class="m-0 text-white p-2">In Progress</h5>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="card border border-success  text-center shadow">
+					<i class="ti ti-checkbox p-2 mx-auto fs-3 my-2 bg-success  rounded-circle"
+						style="width:50px; height: 50px; line-height: 30px;"></i>
+					<h4 class="py-2" th:text="${resolvedComplaints}">50+</h4>
+					<div class="card-footer p-3 bg-success">
+						<h5 class="m-0 text-white p-2">Resolved Complaints</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mt-3" style="border-top: 2px solid gray;">
+			<div class="col-md-8 mt-5">
+				<div class="card shadow-sm border-0 rounded-3">
+					<div class="card-header bg-success text-white fw-bold">
+						<i class="bi bi-bar-chart-fill me-2"></i> Complaint Overview
+					</div>
+					<div class="card-body">
+						<canvas id="complaintChart" height="115"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 mt-5">
+				<div class="card">
+					<div class="card-header bg-primary text-white p-3">
+						<i class="ti ti-message fs-4"></i>
+						<span>Recent Enqueries</span>
+					</div>
+					<div class="card-body p-1">
+						<ul class="list-group list-group-flush" style="max-height: 350px; overflow-y: auto;">
+							<li th:each="enq : ${enqueries}" class="list-group-item p-3">
+								<strong th:text="${enq.name}">Person Name</strong>
+								<small th:text="${#temporals.format(enq.enquiryDate, 'dd-MM-yyyy')}"
+									class="text-muted d-block">Date</small>
+								<span th:text="${enq.subject}" class="text-truncate d-block">Enquiry Message</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Chart.js -->
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<script th:inline="javascript">
+			const ctx = document.getElementById('complaintChart');
+			var complaintMonths = [[${complaintMonths}]];
+			var complaintCounts = [[${complaintCounts}]];
+
+			new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: complaintMonths,
+					datasets: [{
+						label: 'Complaints',
+						data: complaintCounts,
+						borderColor: 'green',
+						backgroundColor: 'rgba(0, 128, 0, 0.2)',
+						borderWidth: 2,
+						tension: 0.3,
+						fill: true,
+						pointRadius: 5
+					}]
+				}
+			});
+		</script>
+
+
+		<!-- Hover & Animation Styles -->
+		<style>
+			.stat-card {
+				transition: transform 0.2s, box-shadow 0.2s;
+				cursor: pointer;
+			}
+
+			.stat-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+			}
+		</style>
+	</main>
+</body>
+
+</html>

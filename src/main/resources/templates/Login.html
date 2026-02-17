@@ -1,0 +1,102 @@
+<html th:replace="~{base::Layout(~{::main})}">
+<body>
+<main>
+
+<style>
+	
+#LoginMain {
+    min-height: 100vh;
+    background: linear-gradient(
+        rgba(17, 43, 76, 0.65),
+        rgba(17, 43, 76, 0.65)
+    ),
+    url("https://www.consultancy.in/media/ranking-details/IN/cyber-security.webp");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+}
+
+/* ===== Card Styling ===== */
+.login-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+}
+
+/* ===== Inputs ===== */
+.form-control {
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 15px;
+}
+
+.form-control:focus {
+    border-color: #112B4C;
+    box-shadow: 0 0 0 0.2rem rgba(17, 43, 76, 0.25);
+}
+
+/* ===== Button ===== */
+.login-btn {
+    background: linear-gradient(135deg, #0075C5, #0d1f35);
+    border: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(17, 43, 76, 0.4);
+}
+
+/* ===== Responsive Fixes ===== */
+@media (max-width: 576px) {
+    .login-card {
+        margin: 0 10px;
+    }
+}
+</style>
+
+<div class="container-fluid" id="LoginMain">
+    <div class="container mt-5 mb-5 h-100">
+        <div class="row justify-content-end mt-5">
+            <div class="col-12 col-sm-10 col-md-7 col-lg-5">
+                <div class="card login-card justify-content-end shadow mt-4">
+                    <div class="login-header text-center pb-2 pt-4">
+                        <h4 class="mb-0 fst-italic " style="color: #000A28;"data-aos="fade-down" data-aos-duration="800">CyberTrace Login</h4>
+                    </div>
+					<hr>
+                    <div class="card-body p-4 p-md-5">
+                        <form action="/Login" method="post" th:object="${dto}">
+                            <div class="mb-4" data-aos="fade-right" data-aos-duration="800">
+                                <label class=" mb-1" style="color: #27324D;">Email Address</label>
+                                <input type="email" th:field="${dto.email}" class="form-control border-shadow-0" placeholder="Enter your email" required  onmouseover="this.style.borderColor='#0075C5'" onmouseout="this.style.borderColor='#ccc'">
+                            </div>
+                            <div class="mb-4" data-aos="fade-left" data-aos-duration="800">
+                                <label class="mb-1" style="color: #27324D;">Password</label>
+                                <input type="password" th:field="${dto.password}" class="form-control" placeholder="Enter your password" required onmouseover="this.style.borderColor='#0075C5'" onmouseout="this.style.borderColor='#ccc'">
+                            </div>
+                            <div class="text-center" data-aos="fade-up" data-aos-duration="1000">
+                                <button type="submit" class="btn login-btn text-white fs-6 mt-2 px-5">Login </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var msg = "[[${msg}]]";
+    if (msg !== "") {
+        alert(msg);
+    }
+</script>
+
+</main>
+</body>
+</html>

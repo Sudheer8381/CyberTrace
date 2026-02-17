@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en" th:fragment="Layout(content)">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Cyber Trace - Portal</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+		integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- AOS CSS -->
+	<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+	<style type="text/css">
+		.footer-link {
+			color: #ccc;
+			text-decoration: none;
+			display: inline-block;
+			transition: all 0.3s ease;
+		}
+
+		.footer-link i {
+			transition: transform 0.3s ease;
+		}
+
+		.footer-link:hover {
+			color: #f8b739;
+			/* Highlight color on hover */
+			text-decoration: none;
+		}
+
+		.footer-link:hover i {
+			transform: translateX(5px);
+			/* Smooth arrow shift */
+		}
+
+
+		.social-icons a {
+			font-size: 18px;
+			color: #ccc;
+			transition: all 0.3s ease-in-out;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 38px;
+			height: 38px;
+			border-radius: 50%;
+			background-color: transparent;
+			text-decoration: none;
+		}
+
+		.social-icons a:hover {
+			transform: scale(1.2);
+			color: #fff;
+			background-color: #f57c00;
+			box-shadow: 0 0 10px #f57c00;
+		}
+
+
+		/* SECTION BACKGROUND */
+		.section-bg {
+			background:
+				radial-gradient(circle at top left, #1e3a8a, transparent 60%),
+				radial-gradient(circle at bottom right, #020617, transparent 55%),
+				linear-gradient(135deg, #020617, #0f172a);
+		}
+
+
+		/* SECTION BACKGROUND */
+		.section-neutral {
+			background-color: #f8fafc;
+			/* very light gray */
+		}
+
+		/* CARD */
+		.pro-card-minimal {
+			height: 100%;
+			background-color: #ffffff;
+			border-radius: 14px;
+			border: 1px solid #e5e7eb;
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+			transition: all 0.3s ease;
+		}
+
+		/* SUBTLE HOVER */
+		.pro-card-minimal:hover {
+			transform: translateY(-6px);
+			box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+		}
+
+		/* CARD CONTENT */
+		.pro-card-body {
+			padding: 32px 28px;
+		}
+
+		/* TITLE */
+		.pro-title {
+			font-size: 18px;
+			font-weight: 600;
+			color: #0f172a;
+			margin-bottom: 8px;
+		}
+
+		/* SUBTITLE */
+		.pro-subtitle {
+			font-size: 14px;
+			font-weight: 500;
+			color: #475569;
+			margin-bottom: 14px;
+		}
+
+		/* DESCRIPTION */
+		.pro-desc {
+			font-size: 14px;
+			line-height: 1.65;
+			color: #64748b;
+			margin-bottom: 22px;
+		}
+
+		/* LINK STYLE */
+		.pro-link {
+			font-size: 14px;
+			font-weight: 500;
+			color: #1d4ed8;
+			text-decoration: none;
+		}
+
+		.pro-link:hover {
+			text-decoration: underline;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="container-fluid fixed-top">
+		<!-- Header Start -->
+		<div class="row">
+			<div class="col-sm-12 p-0">
+				<nav class="navbar navbar-expand-lg py-4" style="background-color: #242424;">
+					<div class="container-fluid px-5">
+						<a class="navbar-brand text-white fw-bold" href="#"><i
+								class="fa-solid fa-shield-halved"></i>CyberTrace</a>
+						<button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse"
+							data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+							aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+							<div class="navbar-nav ms-auto">
+								<a class="nav-link text-white" aria-current="page" href="/">Home</a>
+								<a class="nav-link text-white" href="/AboutUs">About Us</a>
+								<a class="nav-link text-white" href="/Services">Services</a>
+								<a class="nav-link text-white" href="/Login">Login</a>
+								<a class="nav-link text-white" href="/ContactUs">Contact Us</a>
+								<a class="btn btn-warning rounded-pill ms-3 m-1" href="/ReportScam">Report a Scam</a>
+								<a class="btn btn-danger rounded-pill ms-3 m-1" href="/TrackComplaint">Track
+									Complaint</a>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!-- Header End -->
+	<!-- Main Content Section Start -->
+	<div th:replace="${content}"></div>
+	<!-- Main Content Section End -->
+	<!-- Footer Section Start -->
+	<!-- Footer Section Start -->
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Bootstrap 5 Footer -->
+			<footer class="text-light pt-5 pb-4" style="background-color: #242424;">
+				<div class="container">
+					<div class="row gy-4">
+
+						<!-- Brand & Description -->
+						<div class="col-12 col-md-4">
+							<div class="mb-3 text-center text-md-start">
+								<img src="https://as1.ftcdn.net/v2/jpg/15/18/21/30/1000_F_1518213025_RmD9Dnl2bJa3YRaOGixTdzspYiTk0JJj.jpg"
+									alt="SmartBuildHub" width="100px">
+							</div>
+							<p class="small text-white text-center text-md-start">
+								An innovative digital platform transforming traditional home construction methods
+								through
+								seamless collaboration between homeowners, architects, contractors, and suppliers.
+							</p>
+							<div class="d-flex justify-content-center justify-content-md-start gap-3 mt-3">
+								<a href="#" class="text-light fs-5"><i class="fab fa-facebook-f"></i></a>
+								<a href="#" class="text-light fs-5"><i class="fab fa-twitter"></i></a>
+								<a href="#" class="text-light fs-5"><i class="fab fa-instagram"></i></a>
+								<a href="#" class="text-light fs-5"><i class="fab fa-dribbble"></i></a>
+								<a href="#" class="text-light fs-5"><i class="fab fa-youtube"></i></a>
+							</div>
+						</div>
+
+						<!-- Quick Links -->
+						<div class="col-6 col-md-2">
+							<h6 class="text-uppercase mb-3 border-bottom border-warning pb-1 text-center text-md-start">
+								Quick Links</h6>
+							<ul class="list-unstyled small text-center text-md-start">
+								<li><a href="/" class="footer-link d-block mb-1"><i
+											class="fas fa-angle-right me-2"></i>Home</a></li>
+								<li><a href="/Services" class="footer-link d-block mb-1"><i
+											class="fas fa-angle-right me-2"></i>Services</a></li>
+								<li><a href="/AboutUs" class="footer-link d-block mb-1"><i
+											class="fas fa-angle-right me-2"></i>About Us</a></li>
+								<li><a href="/ContactUs" class="footer-link d-block mb-1"><i
+											class="fas fa-angle-right me-2"></i>Contact</a></li>
+								<li><a href="/ReportScam" class="footer-link d-block"><i
+											class="fas fa-angle-right me-2"></i>Report a Scam</a></li>
+								<li><a href="/TrackComplaint" class="footer-link d-block mb-1"><i
+											class="fas fa-angle-right me-2"></i>Track Complaint</a></li>
+							</ul>
+						</div>
+
+						<!-- Services -->
+						<div class="col-6 col-md-3">
+							<h6 class="text-uppercase mb-3 border-bottom border-warning pb-1 text-center text-md-start">
+								Our Services</h6>
+							<ul class="list-unstyled small text-center text-md-start">
+								<li><a href="/index#ourServices" class="footer-link d-block mb-1"><i
+											class="fas fa-angle-right me-2"></i>Services</a></li>
+								<li><a href="#ourProcess" class="footer-link d-block mb-1"><i
+											class="fas fa-angle-right me-2"></i>Our Process</a></li>
+								<li><a href="#" class="footer-link d-block mb-1"><i
+											class="fas fa-angle-right me-2"></i>Contractor Collaboration</a></li>
+								<li><a href="#" class="footer-link d-block mb-1"><i
+											class="fas fa-angle-right me-2"></i>Supply Chain Solutions</a></li>
+								<li><a href="#" class="footer-link d-block mb-1"><i
+											class="fas fa-angle-right me-2"></i>Sustainability Consulting</a></li>
+								<li><a href="#" class="footer-link d-block"><i
+											class="fas fa-angle-right me-2"></i>Client Portal Access</a></li>
+							</ul>
+						</div>
+
+						<!-- Contact -->
+						<div class="col-12 col-md-3">
+							<h6 class="text-uppercase mb-3 border-bottom border-warning pb-1 text-center text-md-start">
+								Contact Us</h6>
+							<p class="small mb-1 text-center text-md-start"><i
+									class="fas fa-map-marker-alt me-2"></i>123 CyberTrace Avenue, CA 90210</p>
+							<p class="small mb-1 text-center text-md-start"><i
+									class="fas fa-envelope me-2"></i>cybertraceofficial001@gmail.com</p>
+							<p class="small mb-3 text-center text-md-start"><i class="fas fa-phone me-2"></i>+91
+								7774445550</p>
+
+							<form class="d-flex justify-content-center justify-content-md-start">
+								<input type="email" class="form-control form-control-sm me-2" placeholder="Your email"
+									style="max-width: 200px;">
+								<button class="btn btn-warning btn-sm" type="submit">
+									<i class="fas fa-paper-plane"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+
+					<div class="text-center mt-4 border-top pt-3 small text-white">
+						&copy; 2025 SmartBuildHub. All rights reserved.
+					</div>
+				</div>
+			</footer>
+
+
+			<!-- Bootstrap JS Bundle -->
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+			<script>
+				$(document).ready(function () {
+					$(".owl-carousel").owlCarousel({
+						loop: true,
+						margin: 30,
+						nav: true,
+						dots: true,
+						autoplay: true,
+						autoplayTimeout: 5000,
+						smartSpeed: 600,
+						responsive: {
+							0: {items: 1},
+							768: {items: 2},
+							992: {items: 3}
+						},
+						navText: ['<i class="bi bi-chevron-left fs-3"></i>', '<i class="bi bi-chevron-right fs-3"></i>']
+					});
+				});
+			</script>
+		</div>
+	</div>
+	<!-- Footer Section End -->
+
+	<!-- Footer Section End-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+		crossorigin="anonymous"></script>
+		
+		<!-- AOS JS -->
+				<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+				<script>
+					AOS.init({
+						duration: 800,  // animation duration in ms
+						easing: 'ease-in-out',
+						once: true,     // animate only once
+					});
+				</script>
+</body>
+
+</html>
