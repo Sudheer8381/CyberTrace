@@ -3,6 +3,7 @@
 About CyberTrace
 CyberTrace is a web-based application built using Spring Boot that focuses on managing and monitoring cyber-related data efficiently. The project demonstrates CRUD operations, REST API development, and integration of backend services with a responsive frontend interface. It is designed to showcase core backend development skills such as building secure APIs, handling data processing, and structuring scalable applications using modern Java technologies.
 
+
 Key Features
 🔹 RESTful API implementation
 🔹 CRUD operations (Create, Read, Update, Delete)
@@ -10,11 +11,13 @@ Key Features
 🔹 Database integration
 🔹 Responsive UI with static resources
 
+
 Tech Stack
 Backend: Java, Spring Boot
 Build Tool: Maven
 Frontend: HTML, CSS, JavaScript
 Version Control: Git & GitHub
+
 
 Maven-based project structure
 
