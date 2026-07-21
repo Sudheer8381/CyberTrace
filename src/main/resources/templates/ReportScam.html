@@ -1,18 +1,18 @@
 <html th:replace="~{base::Layout(~{::main})}">
 <body>
 <main style="background-color: aliceblue;">
-    <div class="container" style="margin-top: 150px;">
+    <div class="container" style="margin-top: 60px;">
         <div class="row justify-content-center">
-            <div class="col-md-10 mb-5">
+            <div class="col-md-9 mb-5">
                 <div class="card shadow-lg border-0" style="border-radius: 15px;">
-                    <div class="card-header text-white text-center py-3" style="border-radius: 15px 15px 0 0; background-color: #112B4C !important;">
-                        <h3 class="mb-0 fst-italic"> Report a Scam</h3>
-                        <p class="mb-0 fst-italic">Help us track and prevent online frauds</p>
+                    <div class="card-header text-white text-center py-2" style="border-radius: 15px 15px 0 0; background-color: #112B4C !important;">
+                        <h4 class="mb-0 fst-italic"> Report a Scam</h4>
+                        <small class="mb-0 fst-italic">Help us track and prevent online frauds</small>
                     </div>
-                    <div class="card-body p-4">
+                    <div class="card-body p-4" style="background-color: #FFFFFF;">
                         <form action="/ReportScam" method="post" th:object="${dto}" enctype="multipart/form-data">
                             <!-- PERSONAL DETAILS -->
-                            <h5 class="fw-bold text-secondary mb-3 fst-italic">Personal Details</h5>
+                            <h5 class="fw-bold text-black mb-3 fst-italic">Personal Details</h5>
                             <div class="row">
                             	<div class="col-md-6 mb-3">
 	                                <label class="form-label">Full Name</label>
@@ -36,7 +36,7 @@
 	                            </div>
 	                            <hr>
 		                            <!-- SCAM INFORMATION -->
-	                            <h5 class="fw-bold text-secondary mb-3 fst-italic">Scam Information</h5>
+	                            <h5 class="fw-bold text-black mb-3 fst-italic">Scam Information</h5>
 	                            <div class="col-md-6 mb-3">
 	                                <label class="form-label">Type of Scam</label>
 	                                <select th:field="*{typeOfScam}" class="form-select" required>
@@ -72,7 +72,7 @@
                             </div>
                             <hr>
                             <!-- EVIDENCE UPLOAD -->
-                            <h5 class="fw-bold text-secondary mb-3 fst-italic">Evidence (Upload Images)</h5>
+                            <h5 class="fw-bold text-black mb-3 fst-italic">Evidence (Upload Images)</h5>
                             <div class="mb-3">
                                 <label class="form-label">Upload Evidence Images</label>
                                 <input type="file" 
@@ -85,7 +85,7 @@
                                 </small>
                             </div>
                             <div class="text-center mt-4">
-                                <button type="submit" class="btn text-white px-5 py-2" style="border-radius: 10px; background-color: #112B4C !important;">
+                                <button type="submit" class="btn btn-sm btn-warning text-black px-4 py-2" style="border-radius: 10px;">
                                      Submit Report
                                 </button>
                             </div>

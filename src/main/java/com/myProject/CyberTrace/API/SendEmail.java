@@ -24,48 +24,48 @@ public class SendEmail {
 		String getWhatsappNo = complaint.getWhatsappNo();
 		String trackLink = "#";
 
-		/*
-		 * String message = "<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n" +
-		 * "<meta charset=\"UTF-8\">\n" +
-		 * "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
-		 * +
-		 * "<title>Complaint Registration Successful <br> Hello ! This Email from CyberTrace</title>\n"
-		 * + "<style>\n" +
-		 * "    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; margin: 0; padding: 0; }\n"
-		 * +
-		 * "    .container { width: 100%; max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); overflow: hidden; border:1px solid grey; }\n"
-		 * +
-		 * "    .header { background-color: #4CAF50; color: #ffffff; text-align: center; padding: 20px; }\n"
-		 * + "    .header h1 { margin: 0; font-size: 24px; }\n" +
-		 * "    .content { padding: 30px; color: #333333; line-height: 1.6; }\n" +
-		 * "    .complaint-card { background-color: #f1f8e9; border-left: 6px solid #4CAF50; padding: 15px 20px; margin: 20px 0; border-radius: 5px; display: flex; align-items: center; gap: 15px; }\n"
-		 * + "    .complaint-card img { width: 40px; height: 40px; }\n" +
-		 * "    .button { display: inline-block; padding: 12px 20px; background-color: #4CAF50; color: #ffffff; text-decoration: none; border-radius: 5px; margin-top: 20px; font-weight: bold; }\n"
-		 * +
-		 * "    .footer { text-align: center; color: #888888; font-size: 12px; padding: 15px; }\n"
-		 * + "</style>\n" + "</head>\n" + "<body>\n" + "<div class=\"container\">\n" +
-		 * "    <div class=\"header\">\n" +
-		 * "        <h1>Complaint Registration Successful</h1>\n" + "    </div>\n" +
-		 * "    <div class=\"content\">\n" + "        <p>Dear <strong>" + userName +
-		 * "</strong>,</p>\n" +
-		 * "        <p>Your complaint has been successfully registered in our system. Please find your complaint details below:</p>\n"
-		 * + "        <div class=\"complaint-card\">\n" +
-		 * "            <img src=\"https://img.icons8.com/color/48/000000/ticket.png\" alt=\"Complaint ID\">\n"
-		 * + "            <div>\n" +
-		 * "                <strong>WhatssApp Number:</strong> <span>" + getWhatsappNo +
-		 * "</span><br>\n" + "                <strong>Complaint ID:</strong> <span>" +
-		 * complaintId + "</span><br>\n" +
-		 * "                You can check the status or progress of your complaint on Official Website of CyberTrace.\n"
-		 * + "            </div>\n" + "        </div>\n" +
-		 * "        <p>Click the button below to track your complaint:</p>\n" +
-		 * "        <a href=\"" + trackLink +
-		 * "\" class=\"button\">Track Complaint</a>\n" +
-		 * "        <p>Thank you for reaching out to us. We will resolve your complaint as soon as possible.</p>\n"
-		 * + "        <p>Regards,<br>Customer Support Team</p>\n" + "    </div>\n" +
-		 * "    <div class=\"footer\">\n" +
-		 * "        &copy; 2025 Your Company Name. All Rights Reserved.\n" +
-		 * "    </div>\n" + "</div></body></html>";
-		 */
+//		/*
+//		 * String message = "<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n" +
+//		 * "<meta charset=\"UTF-8\">\n" +
+//		 * "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+//		 * +
+//		 * "<title>Complaint Registration Successful <br> Hello ! This Email from CyberTrace</title>\n"
+//		 * + "<style>\n" +
+//		 * "    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; margin: 0; padding: 0; }\n"
+//		 * +
+//		 * "    .container { width: 100%; max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); overflow: hidden; border:1px solid grey; }\n"
+//		 * +
+//		 * "    .header { background-color: #4CAF50; color: #ffffff; text-align: center; padding: 20px; }\n"
+//		 * + "    .header h1 { margin: 0; font-size: 24px; }\n" +
+//		 * "    .content { padding: 30px; color: #333333; line-height: 1.6; }\n" +
+//		 * "    .complaint-card { background-color: #f1f8e9; border-left: 6px solid #4CAF50; padding: 15px 20px; margin: 20px 0; border-radius: 5px; display: flex; align-items: center; gap: 15px; }\n"
+//		 * + "    .complaint-card img { width: 40px; height: 40px; }\n" +
+//		 * "    .button { display: inline-block; padding: 12px 20px; background-color: #4CAF50; color: #ffffff; text-decoration: none; border-radius: 5px; margin-top: 20px; font-weight: bold; }\n"
+//		 * +
+//		 * "    .footer { text-align: center; color: #888888; font-size: 12px; padding: 15px; }\n"
+//		 * + "</style>\n" + "</head>\n" + "<body>\n" + "<div class=\"container\">\n" +
+//		 * "    <div class=\"header\">\n" +
+//		 * "        <h1>Complaint Registration Successful</h1>\n" + "    </div>\n" +
+//		 * "    <div class=\"content\">\n" + "        <p>Dear <strong>" + userName +
+//		 * "</strong>,</p>\n" +
+//		 * "        <p>Your complaint has been successfully registered in our system. Please find your complaint details below:</p>\n"
+//		 * + "        <div class=\"complaint-card\">\n" +
+//		 * "            <img src=\"https://img.icons8.com/color/48/000000/ticket.png\" alt=\"Complaint ID\">\n"
+//		 * + "            <div>\n" +
+//		 * "                <strong>WhatssApp Number:</strong> <span>" + getWhatsappNo +
+//		 * "</span><br>\n" + "                <strong>Complaint ID:</strong> <span>" +
+//		 * complaintId + "</span><br>\n" +
+//		 * "                You can check the status or progress of your complaint on Official Website of CyberTrace.\n"
+//		 * + "            </div>\n" + "        </div>\n" +
+//		 * "        <p>Click the button below to track your complaint:</p>\n" +
+//		 * "        <a href=\"" + trackLink +
+//		 * "\" class=\"button\">Track Complaint</a>\n" +
+//		 * "        <p>Thank you for reaching out to us. We will resolve your complaint as soon as possible.</p>\n"
+//		 * + "        <p>Regards,<br>Customer Support Team</p>\n" + "    </div>\n" +
+//		 * "    <div class=\"footer\">\n" +
+//		 * "        &copy; 2025 Your Company Name. All Rights Reserved.\n" +
+//		 * "    </div>\n" + "</div></body></html>";
+//		 */
 
 		String message = "<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n" + "<meta charset=\"UTF-8\">\n"
 				+ "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"

@@ -5,11 +5,11 @@
 	<main class="container-fluid">
 
 		<!-- FORM CARD -->
-		<div class="row pb-5" style="padding-top: 150px;">
+		<div class="row pb-5" style="padding-top: 90px;">
 			<div class="col-12 col-md-10 col-lg-8 mx-auto">
-				<div class="card text-center">
+				<div class="card text-center shadow">
 					<div class="card-header text-white" style="background-color: #112B4C !important;">
-						<h3 class="fst-italic">Track Your Complaint</h3>
+						<h5 class="fst-italic">Track Your Complaint</h5>
 					</div>
 					<div class="card-body">
 						<form th:action="@{/TrackComplaint}" method="post" class="row g-3 justify-content-center">
@@ -18,7 +18,7 @@
 								<input type="text" name="cid" class="form-control" placeholder="Enter Here..." required>
 							</div>
 							<div class="col-12">
-								<button class="btn btn-warning px-4" type="submit">
+								<button class="btn btn-warning btn-sm mt-3 px-4" type="submit">
 									Track Complaint
 								</button>
 							</div>
